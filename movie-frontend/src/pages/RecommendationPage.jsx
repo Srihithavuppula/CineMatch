@@ -30,6 +30,7 @@ export default function RecommendationPage() {
   const [selectedMovie, setSelectedMovie] = useState(null); // Added for MovieModal
 
   const searchRef = useRef(null);
+  const activeFetchId = useRef(0);
   const location = useLocation();
 
   useEffect(() => {
@@ -123,6 +124,8 @@ export default function RecommendationPage() {
   };
 
   const fetchPersonalized = async () => {
+    const currentId = ++activeFetchId.current;
+    
     setLoadingGrid(true);
     setErrorStatus("");
     setMoviesGrid([]);
@@ -130,21 +133,29 @@ export default function RecommendationPage() {
 
     try {
       const res = await getUserRecommendations();
+      if (currentId !== activeFetchId.current) return;
+      
       const data = res.data && res.data.length > 0 ? res.data : [];
       if (data.length === 0) {
         setErrorStatus("No personalized recommendations available yet.");
       } else {
         const enrichedData = await enrichMovies(data);
+        if (currentId !== activeFetchId.current) return;
         setMoviesGrid(enrichedData);
       }
     } catch (err) {
+      if (currentId !== activeFetchId.current) return;
       handleApiError(err, "Failed to load personalized recommendations.");
     } finally {
-      setLoadingGrid(false);
+      if (currentId === activeFetchId.current) {
+        setLoadingGrid(false);
+      }
     }
   };
 
   const handleFetchSimilar = async (movieId, movieTitleForGrid) => {
+    const currentId = ++activeFetchId.current;
+    
     setLoadingGrid(true);
     setErrorStatus("");
     setMoviesGrid([]);
@@ -159,17 +170,23 @@ export default function RecommendationPage() {
 
     try {
       const res = await getSimilarMovies(movieId);
+      if (currentId !== activeFetchId.current) return;
+      
       const data = res.data && res.data.length > 0 ? res.data : [];
       if (data.length === 0) {
         setErrorStatus("We couldn't find any similar recommendations for this title.");
       } else {
         const enrichedData = await enrichMovies(data);
+        if (currentId !== activeFetchId.current) return;
         setMoviesGrid(enrichedData);
       }
     } catch (err) {
+      if (currentId !== activeFetchId.current) return;
       handleApiError(err, "Failed to load similar movies.");
     } finally {
-      setLoadingGrid(false);
+      if (currentId === activeFetchId.current) {
+        setLoadingGrid(false);
+      }
     }
   };
 
