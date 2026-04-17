@@ -3,6 +3,18 @@
 ## Overview
 This project is a full-stack Movie Recommendation System that provides both content-based and personalized movie recommendations. It allows users to search for movies, view details, add favorites, write reviews, and receive intelligent suggestions based on their preferences.
 
+## Project Structure
+
+This project is divided into two branches:
+
+- Frontend: main branch (React application)
+- Backend: master branch (Spring Boot application)
+
+To run the full project, clone the repository and switch between branches:
+
+git checkout main     # for frontend
+git checkout master   # for backend
+
 ## Features
 - User authentication using JWT
 - Search movies by title
