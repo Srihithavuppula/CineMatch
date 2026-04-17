@@ -12,8 +12,8 @@ This project is divided into two branches:
 
 To run the full project, clone the repository and switch between branches:
 
-git checkout main     # for frontend
-git checkout master   # for backend
+-git checkout main     # for frontend
+-git checkout master   # for backend
 
 ## Features
 - User authentication using JWT
