@@ -1,0 +1,234 @@
+.hero {
+  position: relative;
+  height: 92vh;
+  min-height: 560px;
+  display: flex;
+  align-items: flex-end;
+  background-image: var(--hero-bg);
+  background-size: cover;
+  background-position: center top;
+  overflow: hidden;
+}
+
+.hero__gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(20,20,20,0.95) 0%, rgba(20,20,20,0.5) 50%, rgba(20,20,20,0.1) 100%),
+    linear-gradient(to top, rgba(20,20,20,1) 0%, rgba(20,20,20,0.3) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 0 6vw 8vh;
+  max-width: 600px;
+  animation: heroReveal 1s ease both;
+}
+
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero__eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #e94560;
+  margin: 0 0 14px;
+  animation: heroReveal 1s 0.1s ease both;
+}
+
+.hero__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.2rem, 7vw, 6rem);
+  line-height: 1;
+  letter-spacing: 2px;
+  color: #fff;
+  margin: 0 0 20px;
+  animation: heroReveal 1s 0.2s ease both;
+}
+
+.hero__title-accent {
+  color: #e94560;
+  -webkit-text-stroke: 0px;
+}
+
+.hero__sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.65);
+  margin: 0 0 34px;
+  max-width: 420px;
+  animation: heroReveal 1s 0.3s ease both;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: heroReveal 1s 0.4s ease both;
+}
+
+.hero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 13px 28px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.5px;
+}
+
+.hero__btn--primary {
+  background: #e94560;
+  color: #fff;
+}
+
+.hero__btn--primary:hover {
+  background: #ff5577;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(233,69,96,0.45);
+}
+
+.hero__btn--ghost {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(6px);
+}
+
+.hero__btn--ghost:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+.hero__scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.hero__scroll-hint span {
+  display: block;
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.4));
+  animation: scrollPulse 2s ease infinite;
+  margin: auto;
+}
+
+@keyframes scrollPulse {
+  0%,100% { opacity: 0.3; transform: scaleY(0.7); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* Responsive constraints */
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: clamp(2.4rem, 9vw, 4rem);
+  }
+  .hero__sub {
+    font-size: 0.9rem;
+  }
+  .hero__btn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    flex: 1 1 auto;
+    justify-content: center;
+    width: 100%;
+  }
+  .hero__actions {
+    flex-direction: column;
+  }
+}
+
+/* Learn More Modal */
+.hero-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease both;
+}
+
+.hero-modal-content {
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  animation: slideUpFade 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.hero-modal-content h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  color: #fff;
+  font-size: 2.4rem;
+  letter-spacing: 1px;
+  margin: 0 0 16px;
+}
+
+.hero-modal-content p {
+  font-family: 'DM Sans', sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.hero-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.hero-modal-close:hover {
+  background: #e94560;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .hero-modal-content {
+    padding: 30px 20px;
+  }
+}

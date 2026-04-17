@@ -1,0 +1,93 @@
+.mlist {
+  padding: 52px 4vw 80px;
+  min-height: 360px;
+}
+
+/* Header row */
+.mlist__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+.mlist__heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  letter-spacing: 2px;
+  color: #fff;
+  margin: 0;
+  white-space: nowrap;
+}
+.mlist__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(233,69,96,.6), transparent);
+  max-width: 280px;
+}
+.mlist__count {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .78rem;
+  color: rgba(255,255,255,.28);
+  white-space: nowrap;
+}
+
+/* Grid */
+.mlist__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 600px) {
+  .mlist__grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .mlist__grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+  }
+}
+
+.mlist__item {
+  animation: fadeUp .45s ease both;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Skeleton */
+.mlist__skeleton {
+  aspect-ratio: 2/3;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #1c1c1c 25%, #242424 50%, #1c1c1c 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* States */
+.mlist__state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 80px 20px;
+  text-align: center;
+}
+.mlist__state span     { font-size: 2.6rem; }
+.mlist__state p        { font-family: 'DM Sans', sans-serif; font-size: 1rem; color: rgba(255,255,255,.55); margin: 0; }
+.mlist__state small    { font-family: 'DM Sans', sans-serif; font-size: .8rem; color: rgba(255,255,255,.28); }
+.mlist__state code     { background: rgba(255,255,255,.08); padding: 1px 6px; border-radius: 4px; font-size: .78rem; }
+.mlist__state--error span { color: #e94560; }

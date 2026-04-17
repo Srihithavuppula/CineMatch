@@ -1,0 +1,150 @@
+.dash-page {
+  min-height: 100vh;
+  background: #0d0d0d;
+}
+
+.dash-main {
+  padding: 100px 4vw 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 24px;
+}
+
+.dash-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  margin: 0 0 8px 0;
+}
+
+.dash-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+}
+
+.dash-logout {
+  background: transparent;
+  border: 1px solid rgba(233,69,96, 0.4);
+  color: #e94560;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dash-logout:hover {
+  background: rgba(233,69,96,0.1);
+}
+
+.dash-tabs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dash-tab {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.dash-tab:hover {
+  color: #fff;
+}
+
+.dash-tab.active {
+  color: #e94560;
+  border-bottom-color: #e94560;
+}
+
+.dash-empty {
+  padding: 40px;
+  text-align: center;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.4);
+}
+
+.review-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.review-rating {
+  color: #f5c518;
+  font-weight: bold;
+}
+
+.review-text {
+  font-family: 'DM Sans', sans-serif;
+  color: rgba(255,255,255,0.8);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Responsive constraints */
+@media (max-width: 768px) {
+  .dash-main {
+    padding-top: 80px;
+  }
+  .dash-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 16px;
+  }
+  .dash-title {
+    font-size: 2.2rem;
+  }
+  .dash-logout {
+    align-self: flex-start;
+  }
+  .dash-tabs {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .dash-tab {
+    font-size: 1.1rem;
+    padding: 6px 10px;
+  }
+  .review-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

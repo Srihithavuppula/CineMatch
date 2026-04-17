@@ -1,0 +1,37 @@
+/* Append to Navbar.css */
+.nav__auth {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 24px;
+}
+
+.nav__auth-link {
+  color: rgba(255,255,255,0.7);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav__auth-link:hover {
+  color: #fff;
+}
+
+.nav__auth-btn {
+  background: #e94560;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.nav__auth-btn:hover {
+  background: #d63d55;
+  transform: translateY(-1px);
+}

@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap');
+
+/* Main Layout */
+.netflix-dashboard {
+  background-color: #0d0d0d;
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.netflix-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Typography */
+.netflix-dashboard h1, 
+.netflix-dashboard h2, 
+.netflix-dashboard h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1.5px;
+  margin-top: 0;
+}
+
+.netflix-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.netflix-header h1 {
+  font-size: 3rem;
+  color: #e94560;
+  margin: 0;
+}
+
+/* Interactive Elements */
+.btn-accent {
+  background-color: #e94560;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1rem;
+}
+
+.btn-accent:hover:not(:disabled) {
+  background-color: #ff5271;
+  transform: scale(1.05);
+}
+
+.btn-accent:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Search Section */
+.search-box {
+  margin-bottom: 3rem;
+}
+
+.search-box h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-form {
+  display: flex;
+  gap: 1rem;
+  max-width: 600px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #e94560;
+}
+
+/* Grid & Cards - responsive setup */
+.results-section h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  border-left: 5px solid #e94560;
+  padding-left: 1rem;
+}
+
+.movie-grid {
+  display: grid;
+  /* Desktop -> 4-5 cards, Tablet -> 2-3 cards, Mobile -> 1 card */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* Component wrapper for reusing MovieCard + attaching button */
+.movie-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.movie-card-container:hover {
+  transform: translateY(-5px);
+}
+
+/* Ensure the MovieCard inside matches styling container appropriately */
+.movie-card-container .mcard {
+  margin: 0;
+  height: 100%;
+}
+
+/* Action Button under Cards */
+.btn-outline {
+  background: transparent;
+  color: #e94560;
+  border: 2px solid #e94560;
+  padding: 0.6rem 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.btn-outline:hover {
+  background: #e94560;
+  color: #fff;
+}
+
+/* Loading & Skeletons */
+.loading-indicator {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.skeleton-card {
+  width: 220px;
+  height: 330px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Status Messages */
+.status-msg {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #e94560;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.error {
+  border-left-color: #ff4757;
+  color: #ff4757;
+}
+
+@media (max-width: 600px) {
+  .movie-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
