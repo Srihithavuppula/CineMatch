@@ -31,8 +31,10 @@ export default function Dashboard() {
             movies.map(async (m) => {
               let computedRating = m.avgRating ?? m.averageRating ?? 0;
               let injectedPoster = m.injectedPoster || null;
+              let description = m.description ?? m.overview ?? m.plot ?? null;
+              let releaseYear = m.releaseYear ?? m.year ?? null;
 
-              if (computedRating === 0 || !injectedPoster) {
+              if (computedRating === 0 || !injectedPoster || !description || !releaseYear) {
                 try {
                   const details = m.tmdbId 
                     ? await getTMDBDetails(m.tmdbId) 
@@ -41,10 +43,12 @@ export default function Dashboard() {
                   if (details) {
                     if (computedRating === 0 && details.rating) computedRating = details.rating / 2;
                     if (!injectedPoster && details.url) injectedPoster = details.url;
+                    if (!description && details.overview) description = details.overview;
+                    if (!releaseYear && details.releaseDate) releaseYear = details.releaseDate.split('-')[0];
                   }
                 } catch (e) {}
               }
-              return { ...m, computedRating, injectedPoster };
+              return { ...m, computedRating, injectedPoster, description, releaseYear };
             })
           );
         };

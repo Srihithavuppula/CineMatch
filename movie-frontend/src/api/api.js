@@ -49,7 +49,9 @@ export const getTMDBDetails = (tmdbId) => {
     .then(res => {
       return {
         url: res.data?.poster_path ? TMDB_IMG + res.data.poster_path : null,
-        rating: res.data?.vote_average || null
+        rating: res.data?.vote_average || null,
+        overview: res.data?.overview || null,
+        releaseDate: res.data?.release_date || null
       };
     })
     .catch(err => null);
@@ -70,7 +72,9 @@ export const getTMDBDetailsByTitle = (title) => {
       const movie = res.data?.results?.[0];
       return {
         url: movie?.poster_path ? TMDB_IMG + movie.poster_path : null,
-        rating: movie?.vote_average || null
+        rating: movie?.vote_average || null,
+        overview: movie?.overview || null,
+        releaseDate: movie?.release_date || null
       };
     })
     .catch(err => null);

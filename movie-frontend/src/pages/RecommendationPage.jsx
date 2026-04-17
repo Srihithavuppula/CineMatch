@@ -58,8 +58,10 @@ export default function RecommendationPage() {
       movies.map(async (m) => {
         let computedRating = m.avgRating ?? m.averageRating ?? 0;
         let injectedPoster = null; // Ignore backend posterUrl completely to force TMDB check
+        let description = m.description ?? m.overview ?? m.plot ?? null;
+        let releaseYear = m.releaseYear ?? m.year ?? null;
 
-        if (computedRating === 0 || !injectedPoster) {
+        if (computedRating === 0 || !injectedPoster || !description || !releaseYear) {
           try {
             const details = m.tmdbId
               ? await getTMDBDetails(m.tmdbId)
@@ -68,12 +70,14 @@ export default function RecommendationPage() {
             if (details) {
               if (computedRating === 0 && details.rating) computedRating = details.rating / 2;
               if (details.url) injectedPoster = details.url;
+              if (!description && details.overview) description = details.overview;
+              if (!releaseYear && details.releaseDate) releaseYear = details.releaseDate.split('-')[0];
             }
           } catch (e) {
             console.error("TMDB fetch fail for enrichment", e);
           }
         }
-        return { ...m, computedRating, injectedPoster };
+        return { ...m, computedRating, injectedPoster, description, releaseYear };
       })
     );
   };
@@ -242,6 +246,16 @@ export default function RecommendationPage() {
 
         <section className="search-section" ref={searchRef}>
           <div className="search-input-wrap">
+            <svg 
+              className="search-input-icon" 
+              width="22" height="22" 
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+              strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" 
+              style={{ position: 'absolute', left: '18px', color: 'rgba(255,255,255,0.4)', pointerEvents: 'none', transition: 'color 0.3s' }}
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
             <input
               type="text"
               placeholder="Search for a movie title..."

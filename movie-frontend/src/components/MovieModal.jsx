@@ -71,6 +71,8 @@ function ReviewCard({ review, onDelete }) {
 export default function MovieModal({ movie, onClose }) {
   const [poster,      setPoster]      = useState(movie.injectedPoster || FALLBACK);
   const [tmdbRating,  setTmdbRating]  = useState(null);
+  const [tmdbOverview, setTmdbOverview] = useState(null);
+  const [tmdbYear,    setTmdbYear]    = useState(null);
   const [reviews,     setReviews]     = useState([]);
   const [loadingRev,  setLoadingRev]  = useState(true);
   const [form,        setForm]        = useState({ content: "", rating: 0 });
@@ -79,7 +81,7 @@ export default function MovieModal({ movie, onClose }) {
 
   /* poster logic */
   useEffect(() => {
-    if (movie.injectedPoster) return; // Optimized: skip fetch if already pre-fetched
+    if (movie.injectedPoster && (movie.description || movie.overview)) return; // Optimized: skip fetch if already pre-fetched
 
     const fetchPoster = async () => {
       try {
@@ -92,6 +94,8 @@ export default function MovieModal({ movie, onClose }) {
         }
         if (details?.url) setPoster(details.url);
         if (details?.rating) setTmdbRating(details.rating);
+        if (details?.overview) setTmdbOverview(details.overview);
+        if (details?.releaseDate) setTmdbYear(details.releaseDate.split('-')[0]);
       } catch (err) {
         console.error(err);
       }
@@ -157,8 +161,8 @@ export default function MovieModal({ movie, onClose }) {
 
   const baseRating  = movie.computedRating ?? movie.avgRating ?? movie.averageRating ?? 0;
   const rating      = baseRating > 0 ? baseRating : (tmdbRating ? tmdbRating / 2 : null);
-  const description = movie.description ?? movie.overview ?? movie.plot ?? null;
-  const year        = movie.releaseYear ?? movie.year ?? null;
+  const description = movie.description ?? movie.overview ?? movie.plot ?? tmdbOverview ?? null;
+  const year        = movie.releaseYear ?? movie.year ?? tmdbYear ?? null;
 
   return (
     <div className="modal-backdrop" onClick={onClose} role="presentation">

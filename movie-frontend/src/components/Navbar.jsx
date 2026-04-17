@@ -20,7 +20,11 @@ export default function Navbar({ onSearch }) {
   const location = useLocation();
   const token = localStorage.getItem("token");
   
-  const hideSearch = location.pathname === "/login" || location.pathname === "/register";
+  const hideSearch = 
+    location.pathname === "/login" || 
+    location.pathname === "/register" ||
+    location.pathname === "/recommendations" ||
+    location.pathname === "/dashboard";
 
   const handleLogoutClick = () => {
     setMobileMenuOpen(false);
