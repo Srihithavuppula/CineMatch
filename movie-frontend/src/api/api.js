@@ -51,7 +51,8 @@ export const getTMDBDetails = (tmdbId) => {
         url: res.data?.poster_path ? TMDB_IMG + res.data.poster_path : null,
         rating: res.data?.vote_average || null,
         overview: res.data?.overview || null,
-        releaseDate: res.data?.release_date || null
+        releaseDate: res.data?.release_date || null,
+        language: res.data?.original_language || null
       };
     })
     .catch(err => null);
@@ -74,7 +75,8 @@ export const getTMDBDetailsByTitle = (title) => {
         url: movie?.poster_path ? TMDB_IMG + movie.poster_path : null,
         rating: movie?.vote_average || null,
         overview: movie?.overview || null,
-        releaseDate: movie?.release_date || null
+        releaseDate: movie?.release_date || null,
+        language: movie?.original_language || null
       };
     })
     .catch(err => null);

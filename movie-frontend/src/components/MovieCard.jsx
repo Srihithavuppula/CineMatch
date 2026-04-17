@@ -7,6 +7,16 @@ export default function MovieCard({ movie, onClick, isFavorite, onToggleFavorite
 
   const poster = movie.injectedPoster || FALLBACK;
   const rating = movie.computedRating > 0 ? movie.computedRating : null;
+  
+  const getLanguageName = (code) => {
+    if (!code) return "";
+    try {
+      const displayNames = new Intl.DisplayNames(['en'], { type: 'language' });
+      return displayNames.of(code.toLowerCase());
+    } catch {
+      return code.toUpperCase();
+    }
+  };
 
   return (
     <article
@@ -43,6 +53,10 @@ export default function MovieCard({ movie, onClick, isFavorite, onToggleFavorite
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
           </svg>
         </button>
+
+        {movie.language && (
+          <span className="mcard__lang-badge">{getLanguageName(movie.language)}</span>
+        )}
 
         <div className="mcard__overlay">
           <div className="mcard__overlay-inner">

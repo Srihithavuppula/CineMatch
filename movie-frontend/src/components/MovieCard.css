@@ -152,6 +152,24 @@
   color: #fff; /* For outline heart */
 }
 
+.mcard__lang-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 5;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
 /* Show the heart explicitly on hover, or always show if it's active so user knows it's favorited */
 .mcard:hover .mcard__heart,
 .mcard:focus-visible .mcard__heart,

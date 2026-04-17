@@ -33,8 +33,9 @@ export default function Dashboard() {
               let injectedPoster = m.injectedPoster || null;
               let description = m.description ?? m.overview ?? m.plot ?? null;
               let releaseYear = m.releaseYear ?? m.year ?? null;
+              let language = m.language || null;
 
-              if (computedRating === 0 || !injectedPoster || !description || !releaseYear) {
+              if (computedRating === 0 || !injectedPoster || !description || !releaseYear || !language) {
                 try {
                   const details = m.tmdbId 
                     ? await getTMDBDetails(m.tmdbId) 
@@ -45,10 +46,11 @@ export default function Dashboard() {
                     if (!injectedPoster && details.url) injectedPoster = details.url;
                     if (!description && details.overview) description = details.overview;
                     if (!releaseYear && details.releaseDate) releaseYear = details.releaseDate.split('-')[0];
+                    if (!language && details.language) language = details.language.toUpperCase();
                   }
                 } catch (e) {}
               }
-              return { ...m, computedRating, injectedPoster, description, releaseYear };
+              return { ...m, computedRating, injectedPoster, description, releaseYear, language };
             })
           );
         };
